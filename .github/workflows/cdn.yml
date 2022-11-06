@@ -1,0 +1,19 @@
+name: upload CDN
+
+on: push
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    name: Upload files to qiniu CDN
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@master
+    
+    - name: Qiniu Upload
+      uses: hujiulong/action-qiniu-upload@v0.0.2
+      with:
+        access_key: ${{ secrets.ACCESS_KEY }}
+        secret_key: ${{ secrets.SECRET_KEY }}
+        bucket: mk-cdn
